@@ -11,20 +11,14 @@ var groupAnagrams = function(strs) {
         let sortedString = strs[i].split("").sort().join("");
         if(myMap.has(sortedString)){
             let indexes = myMap.get(sortedString);
-            indexes.push(i);
+            indexes.push(strs[i]);
             myMap.set(sortedString,indexes);
             }
         else {
-            myMap.set(sortedString,[i]);
+            myMap.set(sortedString,[strs[i]]);
         }
     }
     
-    for (const [key , value] of myMap){
-       let words = value.map((index)=>{
-            return strs[index];
-        });
-        finalResult.push(words);
-    }
-    
-    return finalResult;
+  
+    return [...myMap.values()];
 };
